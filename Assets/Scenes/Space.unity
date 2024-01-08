@@ -2459,6 +2459,7 @@ MonoBehaviour:
   - {fileID: 286602273}
   - {fileID: 1907993574}
   - {fileID: 440290356}
+  currentCamIndex: 0
 --- !u!4 &1197214900
 Transform:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public class SwitchCameras : MonoBehaviour {
     [SerializeField] private GameObject[] cams;
 
-    private int currentCamIndex = 0;
+    public int currentCamIndex = 0;
 
     void Start() {
         // Ensure that at least one camera is active
@@ -29,7 +29,7 @@ public class SwitchCameras : MonoBehaviour {
             cams[index].SetActive(true);
     }
 
-    private void DeactivateCamera(int index) {
+    public void DeactivateCamera(int index) {
         if (index >= 0 && index < cams.Length)
             cams[index].SetActive(false);
     }
