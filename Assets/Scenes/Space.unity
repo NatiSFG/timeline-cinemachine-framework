@@ -597,6 +597,7 @@ Transform:
   - {fileID: 249836445}
   - {fileID: 628674091}
   - {fileID: 1458339957}
+  - {fileID: 1323594999}
   m_Father: {fileID: 1086496596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &286460113
@@ -1830,7 +1831,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-45, z: 2.9e-43, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 8.961e-42, w: 7.2675746e+31}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2605,6 +2606,9 @@ MonoBehaviour:
   - {fileID: 286602273}
   - {fileID: 1907993574}
   - {fileID: 440290356}
+  yellowCam: {fileID: 483484277}
+  PurpleVolume: {fileID: 1917575952}
+  YellowVolume: {fileID: 2081738042}
   currentCamIndex: 0
 --- !u!4 &1197214900
 Transform:
@@ -2620,7 +2624,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2133663484}
-  - {fileID: 1323594999}
   - {fileID: 483484281}
   - {fileID: 286602274}
   - {fileID: 1907993576}
@@ -2642,7 +2645,6 @@ MonoBehaviour:
   timeline: {fileID: 1153336409}
   secUntilIdle: {fileID: 537934169}
   lastInputTime: 0
-  sequenceLength: 5
   inactivityThreshold: 5
 --- !u!1 &1250602457
 GameObject:
@@ -2816,12 +2818,12 @@ Transform:
   m_GameObject: {fileID: 1323594997}
   serializedVersion: 2
   m_LocalRotation: {x: -0.095852695, y: 0.0029837016, z: -0.00019924712, w: -0.9953911}
-  m_LocalPosition: {x: -10.658177, y: -2.5125444, z: 28.462}
+  m_LocalPosition: {x: -0.029608727, y: 0.62217194, z: -0.024934018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1442926144}
-  m_Father: {fileID: 1197214900}
+  m_Father: {fileID: 281282701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1442926143
 GameObject:
@@ -3696,9 +3698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73bfcc9e609704349b42dd62d246022f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
-  moveSpeedBoostMultiplier: 1.5
+  currentMoveSpeed: 50
   rotSpeed: 90
+  boostMoveSpeedMult: 1.5
 --- !u!1 &2066556380
 GameObject:
   m_ObjectHideFlags: 3
