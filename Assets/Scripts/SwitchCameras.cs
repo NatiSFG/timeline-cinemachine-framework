@@ -1,7 +1,11 @@
+using Cinemachine;
 using UnityEngine;
 
 public class SwitchCameras : MonoBehaviour {
     [SerializeField] private GameObject[] cams;
+    [SerializeField] private GameObject yellowCam;
+    [SerializeField] private GameObject PurpleVolume;
+    [SerializeField] private GameObject YellowVolume;
 
     public int currentCamIndex = 0;
 
@@ -25,8 +29,17 @@ public class SwitchCameras : MonoBehaviour {
     }
 
     private void ActivateCamera(int index) {
-        if (index >= 0 && index < cams.Length)
+        if (index >= 0 && index < cams.Length) {
             cams[index].SetActive(true);
+            if (cams[index] == yellowCam) {
+                PurpleVolume.SetActive(false);
+                YellowVolume.SetActive(true);
+            }
+            else {
+                YellowVolume.SetActive(false);
+                PurpleVolume.SetActive(true);
+            }
+        }
     }
 
     public void DeactivateCamera(int index) {
