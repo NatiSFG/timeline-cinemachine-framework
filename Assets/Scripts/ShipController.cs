@@ -38,7 +38,7 @@ public class ShipController : MonoBehaviour {
             transform.Rotate(Vector3.forward, rollRotation);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             SpeedBoost();
         else currentMoveSpeed = baseMoveSpeed;
     }
