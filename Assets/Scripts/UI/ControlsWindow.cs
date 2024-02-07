@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ControlsWindow : MonoBehaviour {
     [SerializeField] private GameObject controlsWindow;
-    [SerializeField] private Button closeWindowButton;
 
     private bool isPaused = false;
 

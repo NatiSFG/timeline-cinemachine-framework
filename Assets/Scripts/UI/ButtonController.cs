@@ -20,6 +20,7 @@ public class ButtonController : MonoBehaviour {
 
     private void OnClick() {
         windowObj.SetActive(false);
+        LayoutRebuilder.MarkLayoutForRebuild(button.transform as RectTransform);
         controlsWindow.ResumeGame();
     }
 }
