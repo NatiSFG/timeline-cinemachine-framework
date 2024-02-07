@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControlsWindow : MonoBehaviour {
     [SerializeField] private GameObject controlsWindow;
+    [SerializeField] private Button closeWindowButton;
 
     private bool isPaused = false;
 
@@ -16,17 +18,17 @@ public class ControlsWindow : MonoBehaviour {
         }
     }
 
-    void TogglePause() {
+    private void TogglePause() {
         if (isPaused) ResumeGame();
         else PauseGame();
     }
 
-    void PauseGame() {
+    private void PauseGame() {
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    void ResumeGame() {
+    public void ResumeGame() {
         Time.timeScale = 1f;
         isPaused = false;
     }

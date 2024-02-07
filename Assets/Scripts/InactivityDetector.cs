@@ -14,7 +14,7 @@ public class InactivityDetector : MonoBehaviour {
     //private float sequenceCount = 6;
     //private float currentTime = 123;
 
-    private bool isActive => Input.GetKeyDown(KeyCode.R) || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
+    private bool isActive => Input.anyKeyDown || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
 
     private void Awake() {
         switchCams = GetComponent<SwitchCameras>();

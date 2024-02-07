@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour {
     private void Update() {
