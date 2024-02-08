@@ -1,7 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 
-public class SwitchCameras : MonoBehaviour {
+public class Timeline2SwitchCameras : MonoBehaviour {
     [SerializeField] private GameObject[] cams;
     [SerializeField] private GameObject yellowCam;
     [SerializeField] private GameObject PurpleVolume;
