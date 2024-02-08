@@ -13,14 +13,4 @@ public class ButtonController : MonoBehaviour {
         button = GetComponent<Button>();
         controlsWindow = canvas.GetComponent<ControlsWindow>();
     }
-
-    private void Start() {
-        button.onClick.AddListener(OnClick);
-    }
-
-    private void OnClick() {
-        windowObj.SetActive(false);
-        LayoutRebuilder.MarkLayoutForRebuild(button.transform as RectTransform);
-        controlsWindow.ResumeGame();
-    }
 }
