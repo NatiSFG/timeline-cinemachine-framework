@@ -3092,7 +3092,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 8.72e-42, w: 4.1326e-40}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 4e-45, z: 5.971e-42, w: 7.1853527e+22}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7034,7 +7034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMoveSpeed: 50
-  rotSpeed: 90
+  yawPitchSpeed: 90
   boostMoveSpeedMult: 1.5
 --- !u!1 &2066556380
 GameObject:
