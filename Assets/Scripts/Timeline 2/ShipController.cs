@@ -6,12 +6,14 @@ public class ShipController : MonoBehaviour {
 
     private float boostMoveSpeedMult = 1.5f;
     private float baseMoveSpeed = 40f;
+    private Rigidbody rb;
 
     private void Awake() {
+        rb = GetComponent<Rigidbody>();
         currentMoveSpeed = baseMoveSpeed;
     }
 
-    void Update() {
+    private void FixedUpdate() {
         CalculateMovement();
     }
 
@@ -20,23 +22,32 @@ public class ShipController : MonoBehaviour {
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * currentMoveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+        rb.MovePosition(rb.position + movement);
 
-        //clamp rotation direction to 30 degrees each way
+        //########################
+        // Get the local directions based on player's current rotation
+        //Vector3 localForward = transform.forward;
+        //Vector3 localRight = transform.right;
+
+        //// Calculate movement in local space
+        //Vector3 movement = (localForward * verticalInput + localRight * horizontalInput).normalized * moveSpeed * Time.deltaTime;
+        ////########################
+        //Debug.Log((localForward * verticalInput + localRight * horizontalInput).normalized);
+
         // Roll Adjustment (Rotation around Z-axis) Left/Right arrows
         float rollRotation = rotSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.LeftArrow)) transform.Rotate(Vector3.forward, rollRotation, Space.World);
-        else if (Input.GetKey(KeyCode.RightArrow)) transform.Rotate(Vector3.forward, -rollRotation, Space.World);
+        if (Input.GetKey(KeyCode.LeftArrow)) transform.Rotate(Vector3.forward, rollRotation, Space.Self);
+        else if (Input.GetKey(KeyCode.RightArrow)) transform.Rotate(Vector3.forward, -rollRotation, Space.Self);
 
         // Pitch Adjustment (Rotation around X-axis) Up/Down arrows
         float pitchInput = Input.GetAxis("Pitch");
         float pitchRotation = -pitchInput * rotSpeed * Time.deltaTime; // Inverted for natural input
-        transform.Rotate(Vector3.right, pitchRotation, Space.World);
+        transform.Rotate(Vector3.right, pitchRotation, Space.Self);
 
         // Yaw Adjustment (Rotation around Y-axis) Q/E keys
         float yawInput = Input.GetAxis("Yaw");
         float yawRotation = yawInput * rotSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, yawRotation, Space.World);
+        transform.Rotate(Vector3.up, yawRotation, Space.Self);
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             SpeedBoost();

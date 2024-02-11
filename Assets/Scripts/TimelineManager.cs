@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -9,6 +10,8 @@ public class TimelineManager : MonoBehaviour {
     [SerializeField] private InactivityDetector inactivityDetector;
     [SerializeField] private GameObject secsUntilIdle;
     [SerializeField] private ShipController shipController;
+
+    [SerializeField] private GameObject warpRing;
 
     public bool IsTimeline1Done { get; set; }
     public bool IsTimeline2Done { get; set; }
@@ -31,10 +34,16 @@ public class TimelineManager : MonoBehaviour {
 
         PlayTimeline2();
         //when entering the warp ring trigger, timeline 2 is done
-        //Debug.Log("timeline 2 is done");
-        //timelines[1].Stop();
+        if (OnTriggerEnter.Equals(warpRing, GameObject.FindGameObjectWithTag("Player"))) {
+            timelines[1].Stop();
+            Debug.Log("timeline 2 is done");
+            IsTimeline2Done = true;
 
-        //IsTimeline2Done = true;
+            PlayTimeline3();
+            yield return new WaitForSeconds((float)timelines[2].duration);
+            IsTimeline3Done = true;
+        }
+
     }
 
     private void PlayTimeline1() {
@@ -56,7 +65,6 @@ public class TimelineManager : MonoBehaviour {
         shipController.enabled = false;
         DisableTimeline2CamsAndCounter();
         timelines[2].Play();
-        IsTimeline3Done = true; //to move outside of method bc waiting duration in coroutine
     }
 
     private void DisableTimeline2CamsAndCounter() {
