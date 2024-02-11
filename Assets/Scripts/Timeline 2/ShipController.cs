@@ -21,18 +21,12 @@ public class ShipController : MonoBehaviour {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * currentMoveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
-
-        //########################
         // Get the local directions based on player's current rotation
-        //Vector3 localForward = transform.forward;
-        //Vector3 localRight = transform.right;
+        Vector3 localForward = transform.forward;
+        Vector3 localRight = transform.right;
 
-        //// Calculate movement in local space
-        //Vector3 movement = (localForward * verticalInput + localRight * horizontalInput).normalized * moveSpeed * Time.deltaTime;
-        ////########################
-        //Debug.Log((localForward * verticalInput + localRight * horizontalInput).normalized);
+        Vector3 movement = (localForward * verticalInput + localRight * horizontalInput).normalized * currentMoveSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + movement);
 
         // Roll Adjustment (Rotation around Z-axis) Left/Right arrows
         float rollRotation = rotSpeed * Time.deltaTime;
