@@ -3,8 +3,6 @@ using UnityEngine;
 public class ShipController : MonoBehaviour {
     [SerializeField] private float currentMoveSpeed;
     [SerializeField] private float rotSpeed = 55f;
-    [SerializeField] private float minRotation = -30f;
-    [SerializeField] private float maxRotation = 30f;
 
     private float boostMoveSpeedMult = 1.5f;
     private float baseMoveSpeed = 40f;

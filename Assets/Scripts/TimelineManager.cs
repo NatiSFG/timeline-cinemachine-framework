@@ -33,6 +33,7 @@ public class TimelineManager : MonoBehaviour {
         //when entering the warp ring trigger, timeline 2 is done
         //Debug.Log("timeline 2 is done");
         //timelines[1].Stop();
+
         //IsTimeline2Done = true;
     }
 
