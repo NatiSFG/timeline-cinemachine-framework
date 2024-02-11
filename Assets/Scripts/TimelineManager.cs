@@ -30,10 +30,10 @@ public class TimelineManager : MonoBehaviour {
         IsTimeline1Done = true;
 
         PlayTimeline2();
-        yield return new WaitForSeconds((float) timelines[1].duration);
-        Debug.Log("timeline 2 is done");
-        timelines[1].Stop();
-        IsTimeline2Done = true;
+        //when entering the warp ring trigger, timeline 2 is done
+        //Debug.Log("timeline 2 is done");
+        //timelines[1].Stop();
+        //IsTimeline2Done = true;
     }
 
     private void PlayTimeline1() {
