@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -33,17 +32,14 @@ public class TimelineManager : MonoBehaviour {
         IsTimeline1Done = true;
 
         PlayTimeline2();
-        //when entering the warp ring trigger, timeline 2 is done
-        if (OnTriggerEnter.Equals(warpRing, GameObject.FindGameObjectWithTag("Player"))) {
-            timelines[1].Stop();
-            Debug.Log("timeline 2 is done");
-            IsTimeline2Done = true;
 
-            PlayTimeline3();
-            yield return new WaitForSeconds((float)timelines[2].duration);
-            IsTimeline3Done = true;
-        }
-
+        while (!IsTimeline2Done)
+            yield return null;
+        timelines[1].Stop();
+            
+        PlayTimeline3();
+        yield return new WaitForSeconds((float)timelines[2].duration);
+        IsTimeline3Done = true;
     }
 
     private void PlayTimeline1() {
