@@ -89,7 +89,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: Cutscene 1 Camera
+    m_DisplayName: Timeline 1 Camera
   m_Markers:
     m_Objects: []
 --- !u!114 &-1444815218217321614

@@ -1,79 +1,122 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
 public class TimelineManager : MonoBehaviour {
+    /// <summary>
+    /// Represents a <see cref="PlayableDirector"/>, and any associated <see cref="GameObject"/>s and <see cref="Component"/>s that should be active/enabled during its play session.
+    /// </summary>
+    [Serializable]
+    private struct TimelineSequence {
+        public PlayableDirector director;
+        public GameObject[] gameObjects;
+        public Behaviour[] components;
+        public Renderer[] renderers;
 
-    [SerializeField] private PlayableDirector[] timelines;
+        public bool AutoFinish => director != null && director.extrapolationMode == DirectorWrapMode.None;
 
-    [Header("Timeline 2")]
-    [SerializeField] private Timeline2SwitchCameras switchCams;
-    [SerializeField] private InactivityDetector inactivityDetector;
-    [SerializeField] private GameObject secsUntilIdle;
-    [SerializeField] private ShipController shipController;
+        public void Play() {
+            if (director != null)
+                director.Play();
+            SetObjectsEnabled(true);
+        }
 
-    [Header("Timeline 3")]
-    [SerializeField] private GameObject warpRing;
-    [SerializeField] private GameObject mothership;
+        public void Stop() {
+            if (director != null)
+                director.Stop();
+            SetObjectsEnabled(false);
+        }
 
-    public int timelineIndex;
-
-    private void Start () {
-        DisableTimeline2CamsAndCounter();
-        StartCoroutine(PlayTimelines());
+        public void SetObjectsEnabled(bool value) {
+            foreach (GameObject g in gameObjects)
+                g.SetActive(value);
+            foreach (Behaviour b in components)
+                b.enabled = value;
+            foreach (Renderer r in renderers)
+                r.enabled = value;
+        }
     }
 
-    private IEnumerator PlayTimelines() {
-        PlayTimeline1();
-        yield return new WaitForSeconds((float)timelines[0].duration);
-        timelines[0].Stop();
-        isTimeline1Done = true;
+    [SerializeField] private TimelineSequence[] timelines = { };
 
-        PlayTimeline2();
+    private int activeIndex = -1;
+    private bool activeIndexIsDirty = false;
 
-        WaitForSeconds wait = new WaitForSeconds(1);
-        while (!isTimeline2Done)
-            yield return wait;
-        timelines[1].Stop();
-        Debug.Log("should start playing timeline 3");
-        PlayTimeline3();
-        isTimeline3Done = true;
-        //when timeline 3 done, hold frame and have restart option appear in HUD
+    public event Action onTimelineStarted;
+    public event Action onTimelineStopped;
+
+    private bool IsValidIndex(int index) => index >= 0 && index < timelines.Length;
+
+    /// <summary>
+    /// The index of the current timeline that is being played, from <see cref="timelines"/>.
+    /// </summary>
+    public int ActiveIndex {
+        get { return activeIndex; }
+        set {
+            activeIndexIsDirty = true;
+            if (IsValidIndex(activeIndex))
+                timelines[activeIndex].Stop();
+
+            Debug.Log("activeIndex = " + value);
+            activeIndex = value;
+            for (int i = 0; i < timelines.Length; i++)
+                if (i != activeIndex)
+                    timelines[i].SetObjectsEnabled(false);
+
+            if (IsValidIndex(activeIndex))
+                timelines[activeIndex].Play();
+        }
     }
 
-    private void PlayTimeline1() {
-        shipController.enabled = false;
-        timelines[0].Play();
+    private void OnEnable() {
+        StartCoroutine(PlayAllTimelines());
     }
 
-    private void PlayTimeline2() {
-        timelines[0].gameObject.SetActive(false);
-        timelines[1].gameObject.SetActive(true);
-        shipController.enabled = true;
-        EnableTimeline2CamsAndCounter();
+    private IEnumerator WaitFor(PlayableDirector director) {
+        if (director == null)
+            yield break;
+        bool isPlaying = director.state == PlayState.Playing;
+
+        if (director.extrapolationMode != DirectorWrapMode.None)
+            Debug.LogError("This code is only setup for " + nameof(DirectorWrapMode) + "." + nameof(DirectorWrapMode.None));
+
+        while (director.time >= 0 && director.state == PlayState.Playing)
+            yield return null;
     }
 
-    //timeline 3 only plays when warp ring is triggered
-    private void PlayTimeline3() {
-        Debug.Log("playing timeline 3");
-        timelines[1].gameObject.SetActive(false);
-        timelines[2].gameObject.SetActive(true);
-        shipController.enabled = false;
-        DisableTimeline2CamsAndCounter();
-        timelines[2].Play();
-        while (!isTimeline3Done)
-            timelines[2].time = 0;
+    private IEnumerator PlayAllTimelines() {
+        for (int i = 0; i < timelines.Length; i++) {
+            ActiveIndex = i;
+            activeIndexIsDirty = false; //NOTE: Maybe restructure later to NOT have to do this
+
+            OnTimelineStarted();
+            onTimelineStarted?.Invoke();
+
+            if (timelines[i].AutoFinish) {
+                //NOTE: The PlayableDirector is set to DirectorWrapMode.None:
+                //  so we'll wait for 1 iteration of the timeline to complete:
+                yield return WaitFor(timelines[i].director);
+            } else {
+                //NOTE: The PlayableDirector is set to DirectorWrapMode.Looping, so we can't auto-finish,
+                //  but we'll wait for someone else to set the next ActiveIndex:
+                while (!activeIndexIsDirty)
+                    yield return null;
+                activeIndexIsDirty = false;
+                i = activeIndex;
+            }
+
+
+            OnTimelineStopped();
+            onTimelineStopped?.Invoke();
+        }
     }
 
-    private void DisableTimeline2CamsAndCounter() {
-        switchCams.enabled = false;
-        inactivityDetector.enabled = false;
-        secsUntilIdle.SetActive(false);
+    private void OnTimelineStarted() {
+
     }
 
-    private void EnableTimeline2CamsAndCounter() {
-        switchCams.enabled = true;
-        inactivityDetector.enabled = true;
-        secsUntilIdle.SetActive(true);
+    private void OnTimelineStopped() {
+
     }
 }

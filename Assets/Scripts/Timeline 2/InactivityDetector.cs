@@ -11,7 +11,7 @@ public class InactivityDetector : MonoBehaviour {
     public float inactivityThreshold = 5;
 
 
-    private bool isActive => Input.anyKeyDown || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
+    private bool isActive => Input.anyKey || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
     private Timeline2SwitchCameras switchCams;
 
     private void Awake() {
@@ -23,7 +23,7 @@ public class InactivityDetector : MonoBehaviour {
     }
 
     private void Update() {
-        if (timelineManager.isTimeline1Done) {
+        if (timelineManager.ActiveIndex > 0) {
             if (isActive) {
                 lastInputTime = Time.time;
                 timeline2.time = 0;
