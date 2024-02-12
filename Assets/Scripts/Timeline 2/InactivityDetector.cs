@@ -23,7 +23,7 @@ public class InactivityDetector : MonoBehaviour {
     }
 
     private void Update() {
-        if (timelineManager.IsTimeline1Done) {
+        if (timelineManager.isTimeline1Done) {
             if (isActive) {
                 lastInputTime = Time.time;
                 timeline2.time = 0;

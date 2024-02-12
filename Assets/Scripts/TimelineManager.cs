@@ -5,20 +5,18 @@ using UnityEngine.Playables;
 public class TimelineManager : MonoBehaviour {
 
     [SerializeField] private PlayableDirector[] timelines;
+
+    [Header("Timeline 2")]
     [SerializeField] private Timeline2SwitchCameras switchCams;
     [SerializeField] private InactivityDetector inactivityDetector;
     [SerializeField] private GameObject secsUntilIdle;
     [SerializeField] private ShipController shipController;
 
+    [Header("Timeline 3")]
     [SerializeField] private GameObject warpRing;
+    [SerializeField] private GameObject mothership;
 
-    public bool IsTimeline1Done { get; set; }
-    public bool IsTimeline2Done { get; set; }
-    public bool IsTimeline3Done {  get; set; }
-
-    private void Awake() {
-        IsTimeline1Done = IsTimeline2Done = IsTimeline3Done = false;
-    }
+    public int timelineIndex;
 
     private void Start () {
         DisableTimeline2CamsAndCounter();
@@ -29,17 +27,18 @@ public class TimelineManager : MonoBehaviour {
         PlayTimeline1();
         yield return new WaitForSeconds((float)timelines[0].duration);
         timelines[0].Stop();
-        IsTimeline1Done = true;
+        isTimeline1Done = true;
 
         PlayTimeline2();
 
-        while (!IsTimeline2Done)
-            yield return null;
+        WaitForSeconds wait = new WaitForSeconds(1);
+        while (!isTimeline2Done)
+            yield return wait;
         timelines[1].Stop();
-            
+        Debug.Log("should start playing timeline 3");
         PlayTimeline3();
-        yield return new WaitForSeconds((float)timelines[2].duration);
-        IsTimeline3Done = true;
+        isTimeline3Done = true;
+        //when timeline 3 done, hold frame and have restart option appear in HUD
     }
 
     private void PlayTimeline1() {
@@ -56,11 +55,14 @@ public class TimelineManager : MonoBehaviour {
 
     //timeline 3 only plays when warp ring is triggered
     private void PlayTimeline3() {
+        Debug.Log("playing timeline 3");
         timelines[1].gameObject.SetActive(false);
         timelines[2].gameObject.SetActive(true);
         shipController.enabled = false;
         DisableTimeline2CamsAndCounter();
         timelines[2].Play();
+        while (!isTimeline3Done)
+            timelines[2].time = 0;
     }
 
     private void DisableTimeline2CamsAndCounter() {

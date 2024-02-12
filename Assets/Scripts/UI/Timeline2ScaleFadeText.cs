@@ -12,7 +12,7 @@ public class Timeline2ScaleFadeText : MonoBehaviour {
     }
 
     private void Update() {
-        if (timelineManager.IsTimeline1Done) {
+        if (timelineManager.isTimeline1Done) {
             anim.enabled = true;
             anim.Play("Timeline 2 Text");
         }
