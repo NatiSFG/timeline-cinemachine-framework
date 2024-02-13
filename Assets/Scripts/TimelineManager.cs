@@ -5,7 +5,8 @@ using UnityEngine.Playables;
 
 public class TimelineManager : MonoBehaviour {
     /// <summary>
-    /// Represents a <see cref="PlayableDirector"/>, and any associated <see cref="GameObject"/>s and <see cref="Component"/>s that should be active/enabled during its play session.
+    /// Represents a <see cref="PlayableDirector"/>, and any associated <see cref="GameObject"/>s, <see cref=
+    /// "Component"/>s and <see cref="Renderer"/>s that should be active/enabled during its play session.
     /// </summary>
     [Serializable]
     private struct TimelineSequence {
@@ -43,9 +44,6 @@ public class TimelineManager : MonoBehaviour {
     private int activeIndex = -1;
     private bool activeIndexIsDirty = false;
 
-    public event Action onTimelineStarted;
-    public event Action onTimelineStopped;
-
     private bool IsValidIndex(int index) => index >= 0 && index < timelines.Length;
 
     /// <summary>
@@ -58,7 +56,6 @@ public class TimelineManager : MonoBehaviour {
             if (IsValidIndex(activeIndex))
                 timelines[activeIndex].Stop();
 
-            Debug.Log("activeIndex = " + value);
             activeIndex = value;
             for (int i = 0; i < timelines.Length; i++)
                 if (i != activeIndex)
@@ -90,9 +87,6 @@ public class TimelineManager : MonoBehaviour {
             ActiveIndex = i;
             activeIndexIsDirty = false; //NOTE: Maybe restructure later to NOT have to do this
 
-            OnTimelineStarted();
-            onTimelineStarted?.Invoke();
-
             if (timelines[i].AutoFinish) {
                 //NOTE: The PlayableDirector is set to DirectorWrapMode.None:
                 //  so we'll wait for 1 iteration of the timeline to complete:
@@ -105,18 +99,6 @@ public class TimelineManager : MonoBehaviour {
                 activeIndexIsDirty = false;
                 i = activeIndex;
             }
-
-
-            OnTimelineStopped();
-            onTimelineStopped?.Invoke();
         }
-    }
-
-    private void OnTimelineStarted() {
-
-    }
-
-    private void OnTimelineStopped() {
-
     }
 }

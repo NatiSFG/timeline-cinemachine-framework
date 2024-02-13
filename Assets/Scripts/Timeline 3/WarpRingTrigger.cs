@@ -16,10 +16,9 @@ public class WarpRingTrigger : MonoBehaviour {
     }
 
     private IEnumerator TriggerEffect() {
-        // Ensure your trigger effect doesn't last forever
+        // Ensure the trigger effect doesn't last forever
         yield return new WaitForSeconds(1);
         timelineManager.ActiveIndex = 2;
         col.enabled = false;
-        Debug.Log("hit the ring collider");
     }
 }
