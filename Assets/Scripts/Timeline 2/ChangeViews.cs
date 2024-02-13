@@ -1,11 +1,12 @@
 using Cinemachine;
 using UnityEngine;
 
-public class Timeline2SwitchCameras : MonoBehaviour {
+public class ChangeViews : MonoBehaviour {
     [SerializeField] private GameObject[] cams;
     [SerializeField] private GameObject yellowCam;
     [SerializeField] private GameObject PurpleVolume;
     [SerializeField] private GameObject YellowVolume;
+    [SerializeField] private ShipController shipController;
 
     public int currentCamIndex = 0;
 
@@ -23,6 +24,7 @@ public class Timeline2SwitchCameras : MonoBehaviour {
 
     private void ToggleCameras() {
         DeactivateCamera(currentCamIndex);
+        shipController.enabled = false;
         // Move to the next camera in the array
         currentCamIndex = (currentCamIndex + 1) % cams.Length;
         ActivateCamera(currentCamIndex);
@@ -40,10 +42,16 @@ public class Timeline2SwitchCameras : MonoBehaviour {
                 PurpleVolume.SetActive(true);
             }
         }
+        if (index == 0 && !shipController.enabled)
+            EnableShipController();
     }
 
     public void DeactivateCamera(int index) {
         if (index >= 0 && index < cams.Length)
             cams[index].SetActive(false);
+    }
+
+    public void EnableShipController() {
+        shipController.enabled = true;
     }
 }

@@ -16232,7 +16232,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197214898}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e59bb30e36c564abf5f4e48c2612f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 127d2168941ee954aa51ad7a78584454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cams:
@@ -16245,6 +16245,7 @@ MonoBehaviour:
   yellowCam: {fileID: 483484277}
   PurpleVolume: {fileID: 1917575952}
   YellowVolume: {fileID: 2081738042}
+  shipController: {fileID: 1204394113}
   currentCamIndex: 0
 --- !u!4 &1197214900
 Transform:
@@ -16281,6 +16282,7 @@ MonoBehaviour:
   secUntilIdle: {fileID: 537934169}
   timelineManager: {fileID: 319036484}
   lastInputTime: 0
+  shipController: {fileID: 1204394113}
   inactivityThreshold: 5
 --- !u!1 &1204394111
 GameObject:
