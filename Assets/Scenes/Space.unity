@@ -7093,7 +7093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &286602274
 Transform:
   m_ObjectHideFlags: 0
@@ -7133,9 +7133,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_ShowDebugText: 0
   m_Loop: 1
-  m_ChildCameras:
-  - {fileID: 50655834}
-  - {fileID: 1782870557}
+  m_ChildCameras: []
   m_Instructions:
   - m_VirtualCamera: {fileID: 50655834}
     m_Hold: 0
@@ -7792,7 +7790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &440290357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7990,7 +7988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &483484280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,7 +8005,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 15
+  m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -14874,11 +14872,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 89.2
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14902,8 +14900,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15259159, y: 0.12908852, z: -0.03742887, w: 0.9791073}
-  m_LocalPosition: {x: -447.6, y: -172.9, z: 506.7}
+  m_LocalRotation: {x: -0.019479463, y: -0.04349948, z: 0.0008549914, w: -0.9988632}
+  m_LocalPosition: {x: -390.94418, y: -214.73352, z: -6.84348}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16235,18 +16233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127d2168941ee954aa51ad7a78584454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cams:
-  - {fileID: 2133663482}
-  - {fileID: 1323594997}
-  - {fileID: 483484277}
-  - {fileID: 286602273}
-  - {fileID: 1907993574}
-  - {fileID: 440290356}
-  yellowCam: {fileID: 483484277}
-  PurpleVolume: {fileID: 1917575952}
-  YellowVolume: {fileID: 2081738042}
   shipController: {fileID: 1204394113}
-  currentCamIndex: 0
+  director: {fileID: 1153336409}
+  viewDuration: 5
 --- !u!4 &1197214900
 Transform:
   m_ObjectHideFlags: 0
@@ -16278,10 +16267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7501a65e9e4247d42a05a8407d117278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeline2: {fileID: 1153336409}
+  director: {fileID: 1153336409}
   secUntilIdle: {fileID: 537934169}
   timelineManager: {fileID: 319036484}
-  lastInputTime: 0
   shipController: {fileID: 1204394113}
   inactivityThreshold: 5
 --- !u!1 &1204394111
@@ -19503,7 +19491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1907993575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20715,7 +20703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2133663484
 Transform:
   m_ObjectHideFlags: 0
