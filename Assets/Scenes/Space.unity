@@ -14872,11 +14872,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60.000004
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14900,8 +14900,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.019479463, y: -0.04349948, z: 0.0008549914, w: -0.9988632}
-  m_LocalPosition: {x: -390.94418, y: -214.73352, z: -6.84348}
+  m_LocalRotation: {x: 0.09358777, y: -0, z: -0, w: 0.9956111}
+  m_LocalPosition: {x: -387, y: -202.15, z: -36.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16236,6 +16236,7 @@ MonoBehaviour:
   shipController: {fileID: 1204394113}
   director: {fileID: 1153336409}
   viewDuration: 5
+  viewCount: 6
 --- !u!4 &1197214900
 Transform:
   m_ObjectHideFlags: 0
@@ -16271,6 +16272,7 @@ MonoBehaviour:
   secUntilIdle: {fileID: 537934169}
   timelineManager: {fileID: 319036484}
   shipController: {fileID: 1204394113}
+  cameraSwitcher: {fileID: 1197214899}
   inactivityThreshold: 5
 --- !u!1 &1204394111
 GameObject:
