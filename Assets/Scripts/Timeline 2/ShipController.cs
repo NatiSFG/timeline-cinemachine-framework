@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShipController : MonoBehaviour {
     [SerializeField] private float currentMoveSpeed;
     [SerializeField] private float rotSpeed = 55f;
+    [SerializeField] private float forceMultiplier = 4f;
 
     private float boostMoveSpeedMult = 1.5f;
     private float baseMoveSpeed = 40f;
@@ -26,7 +27,7 @@ public class ShipController : MonoBehaviour {
         Vector3 localRight = transform.right;
 
         Vector3 movement = (localForward * verticalInput + localRight * horizontalInput).normalized * currentMoveSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
+        rb.AddForce(movement * forceMultiplier, ForceMode.VelocityChange);
 
         // Roll Adjustment (Rotation around Z-axis) Left/Right arrows
         float rollRotation = rotSpeed * Time.deltaTime;

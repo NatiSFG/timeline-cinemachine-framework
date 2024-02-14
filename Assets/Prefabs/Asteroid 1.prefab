@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -70,17 +74,30 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5095466980051703312}
+      addedObject: {fileID: 6905300363193626436}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6905300363193626436}
+      addedObject: {fileID: 7480459916898934424}
   m_SourcePrefab: {fileID: 100100000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
 --- !u!1 &8981241710807337686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 50c0b062f18a3af4caba1fe49f12797a, type: 3}
   m_PrefabInstance: {fileID: 8981241710807239798}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &5095466980051703312
+--- !u!114 &6905300363193626436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981241710807337686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9287e635bd4e13e4799c4633297fdb93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 50
+--- !u!135 &7480459916898934424
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,15 +118,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.018235344
   m_Center: {x: -0.0016331151, y: -0.0004898957, z: 0.00035839994}
---- !u!114 &6905300363193626436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8981241710807337686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9287e635bd4e13e4799c4633297fdb93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

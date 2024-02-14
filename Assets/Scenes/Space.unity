@@ -7463,6 +7463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warp Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 94786d73f825aec499a1449e0e666279, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7473,6 +7477,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 94786d73f825aec499a1449e0e666279, type: 3}
       insertIndex: -1
       addedObject: {fileID: 945586281}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 94786d73f825aec499a1449e0e666279, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 945586284}
   m_SourcePrefab: {fileID: 100100000, guid: 94786d73f825aec499a1449e0e666279, type: 3}
 --- !u!1001 &367829771
 PrefabInstance:
@@ -14671,6 +14678,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020599999, y: 0.020599999, z: 0.0006}
   m_Center: {x: 0, y: 0, z: -0.005}
+--- !u!64 &945586284
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643434382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7943322702494968582, guid: 94786d73f825aec499a1449e0e666279, type: 3}
 --- !u!1001 &951393796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16294,6 +16323,7 @@ GameObject:
   - component: {fileID: 1204394115}
   - component: {fileID: 1204394114}
   - component: {fileID: 1204394116}
+  - component: {fileID: 1204394118}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -16335,7 +16365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMoveSpeed: 0
-  rotSpeed: 50
+  rotSpeed: 55
+  forceMultiplier: 4
 --- !u!54 &1204394114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16345,7 +16376,7 @@ Rigidbody:
   m_GameObject: {fileID: 1204394111}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -16419,6 +16450,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 1204394116}
   mothership: {fileID: 1385638576}
+--- !u!114 &1204394118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204394111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e8b53b9c973ac4d85843fc8cce9bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1212231790
 PrefabInstance:
   m_ObjectHideFlags: 0
