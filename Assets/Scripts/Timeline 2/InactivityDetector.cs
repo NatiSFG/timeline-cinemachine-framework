@@ -11,6 +11,7 @@ public class InactivityDetector : MonoBehaviour {
     [SerializeField] private SecondsUntilIdle secUntilIdle;
     [SerializeField] private TimelineManager timelineManager;
     [SerializeField] private ShipController shipController;
+    [SerializeField] private CameraSwitcher cameraSwitcher;
     
     public float inactivityThreshold = 5;
 
@@ -43,18 +44,17 @@ public class InactivityDetector : MonoBehaviour {
 
     private void Update() {
         if (timelineManager.ActiveIndex == 1) {
-            secUntilIdle.ResetCountdown();
-            if (InputThisFrame)
+            if (InputThisFrame) {
                 lastInputTime = Time.time;
+                secUntilIdle.ResetCountdown();
+            }
 
             bool isUserActive = IsUserActive;
             if (isUserActive != wasUserActive) {
-                if (isUserActive) {
-
-                }
-                else {
-                    
-                }
+                if (isUserActive)
+                    cameraSwitcher.SwitchTo(0, false);
+                else
+                    cameraSwitcher.SwitchTo(1, true);
                 wasUserActive = isUserActive;
             }
         }
